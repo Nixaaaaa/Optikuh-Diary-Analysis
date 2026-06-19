@@ -1,0 +1,9 @@
+check,count,rule
+duplicate_zeile,0,should be 0
+negative_day_in_milk_ltg,0,ltg < 0
+milk_yield_zero_or_negative,0,mkg <= 0
+body_weight_below_300kg,0,gew < 300 kg
+body_weight_above_1100kg,0,gew > 1100 kg
+bcs_outside_1_to_5,0,BCS outside 1-5
+date_missing,0,missing observation date
+health_status_missing,0,missing health status

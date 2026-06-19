@@ -1,0 +1,43 @@
+%==================== PACKAGES ====================
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+%==================== COLORS ====================
+\definecolor{tugreen}{RGB}{132,184,24} % approximate TU Dortmund green
+\definecolor{darkgray}{RGB}{90,90,90}
+
+%==================== REMOVE NAVIGATION ====================
+\setbeamertemplate{navigation symbols}{}
+
+%==================== HEADER ====================
+\setbeamertemplate{headline}{
+    \leavevmode
+    \hbox{
+        % Left logo (university) at left edge
+        \begin{beamercolorbox}[wd=0.20\paperwidth,ht=1.5cm,dp=1ex,left]{white}
+            \vspace*{0.05cm}
+            \hspace*{0.1cm}
+            \includegraphics[height=1.1cm,keepaspectratio]{figures/tud_logo.png}
+        \end{beamercolorbox}
+        % Flexible space in the middle
+        \begin{beamercolorbox}[wd=0.50\paperwidth,ht=1.5cm,dp=1ex,center]{white}
+        \end{beamercolorbox}
+        % Right logo (department), centered within right header area
+        \begin{beamercolorbox}[wd=0.20\paperwidth,ht=1.5cm,dp=1ex,center]{white}
+            \vspace*{0.05cm}
+            \includegraphics[height=1.1cm,keepaspectratio]{figures/stats_logo.png}
+        \end{beamercolorbox}
+    }
+    \vspace{-0.10cm}
+    \hrule height 1pt
+}
+
+%==================== FOOTER (PAGE NUMBERS) ====================
+\setbeamertemplate{footline}{
+    \leavevmode
+    \hbox{
+        \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,right]{author in head/foot}
+            \usebeamerfont{author in head/foot}\color{tugreen}\insertframenumber{} / \inserttotalframenumber\hspace*{0.5cm}
+        \end{beamercolorbox}
+    }
+}

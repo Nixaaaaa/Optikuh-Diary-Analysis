@@ -1,0 +1,9 @@
+category,Udder (eu),Claw/hoof (kl),Reproduction (fr),Metabolic (st),Respiratory (at),Digestive (vo),Parasitic (pa),Other (so)
+Udder (eu),1,1,1,1,1,1,1,1
+Claw/hoof (kl),1,1,1,1,1,0,1,1
+Reproduction (fr),1,1,1,1,0,1,1,1
+Metabolic (st),1,1,1,1,0,1,0,1
+Respiratory (at),1,1,0,0,1,0,0,1
+Digestive (vo),1,0,1,1,0,1,0,1
+Parasitic (pa),1,1,1,0,0,0,1,0
+Other (so),1,1,1,1,1,1,0,1

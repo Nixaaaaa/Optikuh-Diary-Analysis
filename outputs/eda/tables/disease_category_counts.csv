@@ -1,0 +1,9 @@
+disease_column,category,daily_event_rows,unique_animals,unique_episodes,row_percent
+kl,Claw/hoof (kl),1284,782,1000,0.261
+fr,Reproduction (fr),839,587,658,0.17
+eu,Udder (eu),605,501,581,0.123
+pa,Parasitic (pa),562,446,554,0.114
+st,Metabolic (st),423,313,353,0.086
+so,Other (so),192,149,168,0.039
+vo,Digestive (vo),53,53,53,0.011
+at,Respiratory (at),25,24,24,0.005

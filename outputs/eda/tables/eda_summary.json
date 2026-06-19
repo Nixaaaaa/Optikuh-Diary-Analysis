@@ -1,0 +1,14 @@
+{
+  "rows_daily_records": 492540,
+  "columns_original": 49,
+  "columns_after_derived_dates": 56,
+  "animals_unique_lom": 1714,
+  "farms_unique": 12,
+  "breed_codes_unique": 4,
+  "lactation_episodes_approx": 3086,
+  "observation_start": "2014-08-28",
+  "observation_end": "2017-03-23",
+  "daily_diagnosis_rows_any_disease": 3889,
+  "daily_records_with_blood_values_bhb": 7217,
+  "daily_records_with_milk_yield": 423673
+}

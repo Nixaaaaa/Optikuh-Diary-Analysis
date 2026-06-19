@@ -1,0 +1,33 @@
+variable,health_status,count,mean,median,std,min,max
+bhb,Healthy,2506,0.523,0.45,0.344,0.04,4.83
+bhb,Production disease,885,0.602,0.49,0.474,0.12,4.76
+bhb,Other disease,1775,0.575,0.49,0.453,0.02,9.46
+bhb,Production + other disease,2051,0.695,0.54,0.59,0.03,5.95
+glukose,Healthy,2508,3.502,3.55,0.502,0.41,5.52
+glukose,Production disease,885,3.388,3.42,0.555,1.38,7.32
+glukose,Other disease,1776,3.406,3.44,0.489,0.55,5.78
+glukose,Production + other disease,2051,3.287,3.34,0.594,0.58,8.05
+nefa,Healthy,2508,329.929,203.365,322.89,12.01,2772.34
+nefa,Production disease,885,484.392,330.98,429.612,24.18,2654.56
+nefa,Other disease,1776,311.505,177.955,309.365,18.73,2396.39
+nefa,Production + other disease,2051,458.35,288.69,441.143,2.17,3010.02
+insulin,Healthy,2365,21.642,17.219,17.002,0.02,166.7
+insulin,Production disease,864,14.279,10.89,13.19,0.09,128.636
+insulin,Other disease,1769,21.262,16.507,17.983,0.12,151.957
+insulin,Production + other disease,2037,15.937,11.8,14.668,0.04,118.629
+igf1,Healthy,2368,183.477,172.35,91.258,0.6,760.418
+igf1,Production disease,858,130.594,126.182,72.762,0.7,448.711
+igf1,Other disease,1771,162.222,157.726,82.952,1.3,1070.68
+igf1,Production + other disease,2039,127.922,116.863,80.754,0.0,638.318
+adiponektin,Healthy,2495,25.14,24.78,5.718,0.0,50.032
+adiponektin,Production disease,885,25.457,25.1,6.124,8.5,50.82
+adiponektin,Other disease,1775,25.544,25.14,5.769,0.0,51.341
+adiponektin,Production + other disease,2054,25.738,25.13,6.075,11.34,77.86
+ca,Healthy,2493,2.433,2.44,0.151,0.65,3.56
+ca,Production disease,885,2.404,2.42,0.154,1.53,3.42
+ca,Other disease,1776,2.434,2.44,0.15,1.26,3.39
+ca,Production + other disease,2049,2.413,2.43,0.2,0.82,3.46
+nsba,Healthy,489,146.71,143.0,71.275,-79.0,335.0
+nsba,Production disease,406,153.453,149.5,73.662,-8.0,341.0
+nsba,Other disease,556,154.996,158.5,72.187,-81.0,343.0
+nsba,Production + other disease,980,152.664,153.0,68.827,-92.0,360.0

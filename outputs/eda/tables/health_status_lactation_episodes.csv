@@ -1,0 +1,5 @@
+health_status,count,percent
+Healthy,1234,39.97
+Production disease,402,13.02
+Other disease,721,23.36
+Production + other disease,730,23.65

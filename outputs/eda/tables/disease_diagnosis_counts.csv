@@ -1,0 +1,27 @@
+disease_column,category,diagnosis,daily_event_rows,unique_animals,unique_episodes
+kl,Claw/hoof (kl),septische Erkrankung,700,567,695
+eu,Udder (eu),Mastitis,578,497,577
+pa,Parasitic (pa),Parasitose,562,446,554
+kl,Claw/hoof (kl),aseptische Erkrankung,445,375,439
+fr,Reproduction (fr),Zyklusstörung,379,346,379
+fr,Reproduction (fr),Metritis,308,293,307
+st,Metabolic (st),Hypocalcämie,212,191,212
+st,Metabolic (st),Ketose,183,176,182
+kl,Claw/hoof (kl),Sonstige Klauenerkrankungen,139,132,139
+fr,Reproduction (fr),Nachgeburtsverhaltung,89,83,89
+so,Other (so),Sonstiges,82,69,81
+vo,Digestive (vo),Verdauungsstörung,53,53,53
+so,Other (so),Fieber,38,36,38
+fr,Reproduction (fr),Fruchtbarkeit Sonstiges,37,35,37
+fr,Reproduction (fr),Störung der Geburt,26,26,26
+at,Respiratory (at),Atemwegserkrankung,25,24,24
+so,Other (so),Fremdkörper,22,22,22
+st,Metabolic (st),Labmagenverlagerung,17,17,17
+eu,Udder (eu),Euter Sonstige,16,15,16
+so,Other (so),Festliegen (keine Hypocalcämie),15,15,15
+so,Other (so),Augenerkrankung,14,14,14
+eu,Udder (eu),Zitzen/Euterverletzung,11,11,11
+st,Metabolic (st),Stoffwechsel Sonstiges,11,11,11
+so,Other (so),traumatisch bedingte Erkrankung,11,11,10
+so,Other (so),Peritonitis,6,6,6
+so,Other (so),Hauterkrankung,4,4,4

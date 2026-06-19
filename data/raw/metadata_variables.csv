@@ -1,0 +1,49 @@
+Variable,Bedeutung (Deutsch),Meaning (English)
+zeile,Zeile,row
+farm,Betrieb,farm (anonymized)
+lom,Ohrmarkennummer,ear tag number
+gebdat,Geburtsdatum,date of birth
+alter,Alter in Tagen,age in days
+rasse,Rasse,breed
+datum,Beobachtungsdatum,observation date
+kw,Kalenderwoche,calendar week
+lnr,Laktationsnummer,lactation number
+kaldat,Letztes Kalbedatum,last calving date
+kalver,Kalbeverlauf der letzten Kalbung,calving course of last calving
+ltg,Laktationstage / Milchttage,day in milk
+apltg,Tage bis zur nächsten Kalbung,days until next calving
+tratag,Trächtigkeitstage,day of gestation
+trodat,Trockenstelldatum,dry-off date
+trltg,Trockenstehtage,days dry
+fts,Futteraufnahme (kg Trockenmasse),feed intake (kg dry matter)
+ftsnel,Energieaufnahme (NEL),energy intake (NEL)
+ftsme,Energieaufnahme (ME),energy intake (ME)
+eb_nel,Energiebilanz (NEL),energy balance (NEL)
+eb_me,Energiebilanz (ME),energy balance (ME)
+h2o,Wasseraufnahme (kg),water intake (kg)
+gew,Körpergewicht (kg),body weight (kg)
+bcs,Body Condition Score (Körperkondition),body condition score
+rfd,Rückenfettdicke (mm),backfat thickness (mm)
+mkg,Milchmenge (kg),milk yield (kg)
+fpro,Milchfett (%),milk fat (%)
+epro,Milcheiweiß (%),milk protein (%)
+lakt,Laktose (%),lactose (%)
+bhb,Beta-Hydroxybutyrat (mmol/l),beta-hydroxybutyrate (mmol/l)
+glukose,Glukose (mmol/l),glucose (mmol/l)
+nefa,Freie Fettsäuren / NEFA (µmol),non-esterified fatty acids (µmol)
+insulin,Insulin (ng/ml),insulin (ng/ml)
+igf1,Insulin-like growth factor 1 (µU/ml),insulin-like growth factor 1 in µU/ml
+adiponektin,Adiponektin,adiponectin
+ca,Kalzium (mmol/l),calcium (mmol/l)
+nsba,Netto-Säure-Basen-Ausscheidung,net acid-base excretion
+eu,Eutererkrankungen,udder diseases
+kl,Klauenerkrankungen,claw diseases
+fr,Fruchtbarkeitsstörungen,fertility disorders
+st,Stoffwechselstörungen,metabolic disorders
+at,Atemwegserkrankungen,respiratory diseases
+vo,Verdauungserkrankungen,digestive diseases
+pa,Parasitäre Erkrankungen,parasitic diseases
+so,Sonstige Erkrankungen,other diseases
+abgdat,Abgangsdatum,culling date
+abggrund,Abgangsgrund,reason for culling
+gesundheit,Gesundheitsstatus pro Laktation,health status per lactation

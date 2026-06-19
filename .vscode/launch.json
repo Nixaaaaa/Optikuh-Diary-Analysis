@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run OptiKuh EDA",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/02_run_eda.py",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

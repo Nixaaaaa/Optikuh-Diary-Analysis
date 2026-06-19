@@ -1,0 +1,225 @@
+%============================================================
+% OptiKuh EDA Presentation
+% Similar structure to previous Case Study EDA slides
+%============================================================
+
+%==================== SLIDE 1: TITLE ====================
+{
+\setbeamertemplate{footline}{}
+\begin{frame}[noframenumbering]
+
+\vspace{1.9cm}
+
+\begin{center}
+    {\fontsize{25}{29}\selectfont \color{tugreen}
+    Case Study III:\\[0.25cm]
+    OptiKuh Dairy Cow Health Data}
+\end{center}
+
+\vspace{0.95cm}
+
+\begin{flushleft}
+{\large
+Nixon M Paulson\\
+Rohith B Chowdappa\\
+Maria Cherian}
+\end{flushleft}
+
+\end{frame}
+}
+
+%==================== SLIDE 2 ====================
+\begin{frame}{What we did}
+
+\setbeamercolor{item}{fg=tugreen}
+\begin{itemize}
+    \item Set up a reproducible project structure in VS Code
+    \item Converted and organized the OptiKuh dataset for analysis
+    \item Performed exploratory data analysis on:
+    \begin{itemize}
+        \item observation coverage
+        \item health-status distribution
+        \item farm and breed differences
+        \item disease categories
+        \item missingness patterns
+        \item milk yield and metabolic markers
+    \end{itemize}
+    \item Generated reusable figures, tables and notebook outputs
+\end{itemize}
+
+\end{frame}
+
+%==================== SLIDE 3 ====================
+\begin{frame}{Overview and Preprocessing}
+
+\setbeamercolor{item}{fg=tugreen}
+\begin{itemize}
+    \item Loaded the original Excel data and metadata files
+    \item Converted the main dataset into CSV format for faster repeated loading
+    \item Parsed date variables and checked the observation period
+       
+    
+\end{itemize}
+
+\end{frame}
+
+%==================== SLIDE 4 ====================
+\begin{frame}{Analysis 1.1}
+
+\setbeamercolor{item}{fg=tugreen}
+\begin{itemize}
+    \item Observation coverage changes strongly over time
+    \item The dataset is longitudinal, not one independent row per cow
+    \item This affects how future modelling data should be split
+\end{itemize}
+
+\vspace{0.15cm}
+
+\begin{center}
+    \includegraphics[width=0.66\linewidth]{../outputs/eda/figures/fig06_records_over_time.png}
+\end{center}
+
+\end{frame}
+
+%==================== SLIDE 5 ====================
+\begin{frame}{Analysis 1.2}
+
+\setbeamercolor{item}{fg=tugreen}
+\begin{itemize}
+    \item Health status was summarized at lactation-episode level
+    \item This avoids repeatedly counting the same animal across daily records
+    \item Healthy episodes form the largest group, but disease categories are still substantial
+\end{itemize}
+
+\vspace{0.15cm}
+
+\begin{center}
+    \includegraphics[width=0.58\linewidth]{../outputs/eda/figures/fig02_health_status_lactation_episodes.png}
+\end{center}
+
+\end{frame}
+
+%==================== SLIDE 6 ====================
+\begin{frame}{Analysis 1.3}
+
+\setbeamercolor{item}{fg=tugreen}
+\begin{itemize}
+    \item Health-status composition differs clearly across farms
+    \item Some farms have a much larger share of disease-related episodes
+    \item Farm identity should therefore be considered in later validation
+\end{itemize}
+
+\vspace{0.10cm}
+
+\begin{center}
+    \includegraphics[width=0.58\linewidth]{../outputs/eda/figures/fig17_health_status_by_farm_percent.png}
+\end{center}
+
+\end{frame}
+
+%==================== SLIDE 7 ====================
+\begin{frame}{Analysis 1.4}
+
+\setbeamercolor{item}{fg=tugreen}
+\begin{itemize}
+    \item Production-disease rate is not evenly distributed across farms
+    \item This is important before deciding on train-test split strategy
+    \item A random row-wise split could give overly optimistic model performance
+\end{itemize}
+
+\vspace{0.15cm}
+
+\begin{center}
+    \includegraphics[width=0.61\linewidth]{../outputs/eda/figures/fig20_production_disease_rate_by_farm.png}
+\end{center}
+
+\end{frame}
+
+%==================== SLIDE 8 ====================
+\begin{frame}{Analysis 1.5}
+
+\setbeamercolor{item}{fg=tugreen}
+\begin{itemize}
+    \item Breed groups show different health-status distributions
+    \item Breed may influence both disease risk and production-related variables
+    \item This should be retained as a grouping variable in future analysis
+\end{itemize}
+
+\vspace{0.15cm}
+
+\begin{center}
+    \includegraphics[width=0.58\linewidth]{../outputs/eda/figures/fig18_health_status_by_breed_percent.png}
+\end{center}
+
+\end{frame}
+
+%==================== SLIDE 9 ====================
+\begin{frame}{Analysis 1.6}
+
+\setbeamercolor{item}{fg=tugreen}
+\begin{itemize}
+    \item Missingness is strongly measurement-dependent
+    \item Biomarkers and body-condition variables are much sparser than basic animal/time variables
+    \item Missing biomarker values should not be treated as simple random missingness
+\end{itemize}
+
+\vspace{0.15cm}
+
+\begin{center}
+    \includegraphics[width=0.62\linewidth]{../outputs/eda/figures/fig29_missingness_by_measurement_block.png}
+\end{center}
+
+\end{frame}
+
+%==================== SLIDE 10 ====================
+\begin{frame}{Analysis 1.7}
+
+\setbeamercolor{item}{fg=tugreen}
+\begin{itemize}
+    \item Disease events are concentrated in a few main categories
+    \item Claw/hoof, reproduction and udder-related disorders dominate the recorded events
+    \item These categories are important for defining future target variables
+\end{itemize}
+
+\vspace{0.15cm}
+
+\begin{center}
+    \includegraphics[width=0.62\linewidth]{../outputs/eda/figures/fig10_disease_category_event_rows.png}
+\end{center}
+
+\end{frame}
+
+%==================== SLIDE 11 ====================
+\begin{frame}{Analysis 1.8}
+
+\setbeamercolor{item}{fg=tugreen}
+\begin{itemize}
+    \item Milk yield changes over days in milk and differs by health status
+    \item The time axis is central for interpreting production-related patterns
+    \item Future features should therefore consider lactation-stage windows
+\end{itemize}
+
+\vspace{0.10cm}
+
+\begin{center}
+    \includegraphics[width=0.62\linewidth]{../outputs/eda/figures/fig23_milk_yield_dim_trend_by_health_status.png}
+\end{center}
+
+\end{frame}
+
+%==================== SLIDE 12 ====================
+\begin{frame}{Agenda for next week}
+
+\setbeamercolor{item}{fg=tugreen}
+\begin{itemize}
+    \item Define the final analysis unit:
+    \begin{itemize}
+        \item daily record vs. lactation episode
+    \end{itemize}
+    \item Define the production-disease target clearly
+    \item Decide the time window around calving
+    \item Build preprocessing steps for sparse biomarker variables
+    \item Start baseline modelling only after the target and split strategy are fixed
+\end{itemize}
+
+\end{frame}

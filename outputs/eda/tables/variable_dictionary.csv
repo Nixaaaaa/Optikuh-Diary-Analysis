@@ -1,0 +1,57 @@
+variable,dtype,non_missing,missing_percent,unique_values,meaning_de,meaning_en
+zeile,int64,492540,0.0,492540,Zeile,row
+farm,int64,492540,0.0,12,Betrieb,farm (anonymized)
+lom,str,492540,0.0,1714,Ohrmarkennummer,ear tag number
+gebdat,int64,492540,0.0,1219,Geburtsdatum,date of birth
+alter,int64,492540,0.0,4330,Alter in Tagen,age in days
+rasse,int64,492540,0.0,4,Rasse,breed
+datum,int64,492540,0.0,939,Beobachtungsdatum,observation date
+kw,int64,492540,0.0,135,Kalenderwoche,calendar week
+lnr,int64,492540,0.0,12,Laktationsnummer,lactation number
+kaldat,float64,484308,1.67,1072,Letztes Kalbedatum,last calving date
+kalver,float64,479931,2.56,5,Kalbeverlauf der letzten Kalbung,calving course of last calving
+ltg,float64,484308,1.67,728,Laktationstage / Milchttage,day in milk
+apltg,float64,394717,19.86,868,Tage bis zur nächsten Kalbung,days until next calving
+tratag,float64,278021,43.55,321,Trächtigkeitstage,day of gestation
+trodat,float64,45546,90.75,416,Trockenstelldatum,dry-off date
+trltg,float64,45546,90.75,228,Trockenstehtage,days dry
+fts,float64,418647,15.0,4138,Futteraufnahme (kg Trockenmasse),feed intake (kg dry matter)
+ftsnel,float64,418623,15.01,23476,Energieaufnahme (NEL),energy intake (NEL)
+ftsme,float64,418623,15.01,35309,Energieaufnahme (ME),energy intake (ME)
+eb_nel,float64,51145,89.62,12120,Energiebilanz (NEL),energy balance (NEL)
+eb_me,float64,51059,89.63,16369,Energiebilanz (ME),energy balance (ME)
+h2o,float64,136822,72.22,1595,Wasseraufnahme (kg),water intake (kg)
+gew,float64,375354,23.79,31543,Körpergewicht (kg),body weight (kg)
+bcs,float64,18624,96.22,46,Body Condition Score (Körperkondition),body condition score
+rfd,float64,25688,94.78,348,Rückenfettdicke (mm),backfat thickness (mm)
+mkg,float64,423673,13.98,5992,Milchmenge (kg),milk yield (kg)
+fpro,float64,55936,88.64,541,Milchfett (%),milk fat (%)
+epro,float64,56030,88.62,330,Milcheiweiß (%),milk protein (%)
+feq,float64,55884,88.65,202,Fett-Eiweiss-Quotient,fat-to-protein ratio
+lakt,float64,55921,88.65,170,Laktose (%),lactose (%)
+bhb,float64,7217,98.53,297,Beta-Hydroxybutyrat (mmol/l),beta-hydroxybutyrate (mmol/l)
+glukose,float64,7220,98.53,361,Glukose (mmol/l),glucose (mmol/l)
+nefa,float64,7220,98.53,6669,Freie Fettsäuren / NEFA (µmol),non-esterified fatty acids (µmol)
+insulin,float64,7035,98.57,6287,Insulin (ng/ml),insulin (ng/ml)
+igf1,float64,7036,98.57,6625,Insulin-like growth factor 1 (µU/ml),insulin-like growth factor 1 in µU/ml
+adiponektin,float64,7209,98.54,3990,Adiponektin,adiponectin
+ca,float64,7203,98.54,164,Kalzium (mmol/l),calcium (mmol/l)
+nsba,float64,2431,99.51,341,Netto-Säure-Basen-Ausscheidung,net acid-base excretion
+eu,str,605,99.88,3,Eutererkrankungen,udder diseases
+kl,str,1284,99.74,3,Klauenerkrankungen,claw diseases
+fr,str,839,99.83,5,Fruchtbarkeitsstörungen,fertility disorders
+st,str,423,99.91,4,Stoffwechselstörungen,metabolic disorders
+at,str,25,99.99,1,Atemwegserkrankungen,respiratory diseases
+vo,str,53,99.99,1,Verdauungserkrankungen,digestive diseases
+pa,str,562,99.89,1,Parasitäre Erkrankungen,parasitic diseases
+so,str,192,99.96,8,Sonstige Erkrankungen,other diseases
+gesundheit,str,492540,0.0,4,Gesundheitsstatus pro Laktation,health status per lactation
+abgdat,float64,251732,48.89,452,Abgangsdatum,culling date
+abggrund,str,251732,48.89,7,Abgangsgrund,reason for culling
+gebdat_date,datetime64[s],492540,0.0,1219,,
+datum_date,datetime64[s],492540,0.0,939,,
+kaldat_date,datetime64[s],484308,1.67,1072,,
+trodat_date,datetime64[s],45546,90.75,416,,
+abgdat_date,datetime64[s],251732,48.89,452,,
+health_status,category,492540,0.0,4,,
+episode_id,str,484308,1.67,3086,,
