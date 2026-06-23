@@ -1,6 +1,6 @@
 %============================================================
 % OptiKuh EDA Presentation
-% Similar structure to previous Case Study EDA slides
+% Case-study style: setup + overview + numeric EDA findings
 %============================================================
 
 %==================== SLIDE 1: TITLE ====================
@@ -12,7 +12,7 @@
 
 \begin{center}
     {\fontsize{25}{29}\selectfont \color{tugreen}
-    Case Study III:\\[0.25cm]
+    Case Study II:\\[0.25cm]
     OptiKuh Dairy Cow Health Data}
 \end{center}
 
@@ -33,44 +33,64 @@ Maria Cherian}
 
 \setbeamercolor{item}{fg=tugreen}
 \begin{itemize}
-    \item Set up a reproducible project structure in VS Code
-    \item Converted and organized the OptiKuh dataset for analysis
     \item Performed exploratory data analysis on:
     \begin{itemize}
-        \item observation coverage
+        \item dataset size and observation period
+        \item missing values and measurement availability
         \item health-status distribution
-        \item farm and breed differences
-        \item disease categories
-        \item missingness patterns
-        \item milk yield and metabolic markers
+        \item farm-level and breed-level differences
+        \item diagnosis labels
+        \item milk yield and metabolic-marker patterns
     \end{itemize}
-    \item Generated reusable figures, tables and notebook outputs
 \end{itemize}
 
 \end{frame}
 
 %==================== SLIDE 3 ====================
-\begin{frame}{Overview and Preprocessing}
+\begin{frame}{Dataset Overview}
 
 \setbeamercolor{item}{fg=tugreen}
 \begin{itemize}
-    \item Loaded the original Excel data and metadata files
-    \item Converted the main dataset into CSV format for faster repeated loading
-    \item Parsed date variables and checked the observation period
-       
-    
+    \item Daily records: 492,540
+    \item Original variables: 49
+    \item Unique animals: 1,714
+    \item Anonymized farms: 12
+    \item Approx. lactation episodes: 3,422
+    \item Observation window: 2014-08-28 to 2017-03-23
 \end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{Note:} this is a large repeated-measurement dataset, not a simple one-row-per-animal dataset.
 
 \end{frame}
 
 %==================== SLIDE 4 ====================
+\begin{frame}{Basic Data Quality Checks}
+
+\setbeamercolor{item}{fg=tugreen}
+\begin{itemize}
+    \item Dates were parsed to check the 32-month observation window
+    \item Animal, farm and lactation identifiers were checked for repeated measurements
+    \item Missing values were checked column-wise and by measurement group
+    \item Health status was summarized at lactation-episode level to avoid repeated counting
+    \item Daily-record summaries and lactation-episode summaries were kept separate
+\end{itemize}
+
+\vspace{0.25cm}
+
+\textbf{Main point:} the data must be handled according to animal, farm and lactation structure.
+
+\end{frame}
+
+%==================== SLIDE 5 ====================
 \begin{frame}{Analysis 1.1}
 
 \setbeamercolor{item}{fg=tugreen}
 \begin{itemize}
-    \item Observation coverage changes strongly over time
-    \item The dataset is longitudinal, not one independent row per cow
-    \item This affects how future modelling data should be split
+    \item Observation period covers 32 months
+    \item Monthly records range from 4 rows at the beginning to 25,852 rows at the peak
+    \item Highest monthly coverage was in 2015-10
 \end{itemize}
 
 \vspace{0.15cm}
@@ -81,14 +101,15 @@ Maria Cherian}
 
 \end{frame}
 
-%==================== SLIDE 5 ====================
+%==================== SLIDE 6 ====================
 \begin{frame}{Analysis 1.2}
 
 \setbeamercolor{item}{fg=tugreen}
 \begin{itemize}
-    \item Health status was summarized at lactation-episode level
-    \item This avoids repeatedly counting the same animal across daily records
-    \item Healthy episodes form the largest group, but disease categories are still substantial
+    \item Healthy: 1,547 episodes, 45.21\%
+    \item Production disease only: 404 episodes, 11.81\%
+    \item Other disease only: 740 episodes, 21.62\%
+    \item Production disease + other disease: 731 episodes, 21.36\%
 \end{itemize}
 
 \vspace{0.15cm}
@@ -99,14 +120,14 @@ Maria Cherian}
 
 \end{frame}
 
-%==================== SLIDE 6 ====================
+%==================== SLIDE 7 ====================
 \begin{frame}{Analysis 1.3}
 
 \setbeamercolor{item}{fg=tugreen}
 \begin{itemize}
-    \item Health-status composition differs clearly across farms
-    \item Some farms have a much larger share of disease-related episodes
-    \item Farm identity should therefore be considered in later validation
+    \item Health-status composition differs across all 12 farms
+    \item Farm episode counts range from 84 to 722 episodes
+    \item The largest farm has about 8.6 times more episodes than the smallest farm
 \end{itemize}
 
 \vspace{0.10cm}
@@ -117,32 +138,34 @@ Maria Cherian}
 
 \end{frame}
 
-%==================== SLIDE 7 ====================
+%==================== SLIDE 8 ====================
 \begin{frame}{Analysis 1.4}
 
 \setbeamercolor{item}{fg=tugreen}
 \begin{itemize}
-    \item Production-disease rate is not evenly distributed across farms
-    \item This is important before deciding on train-test split strategy
-    \item A random row-wise split could give overly optimistic model performance
+    \item Top diagnosis: septic claw/hoof disease with 700 event rows
+    \item Mastitis: 578 event rows
+    \item Parasitic disease: 562 event rows
+    \item Top 4 diagnoses together account for 2,285 event rows
 \end{itemize}
 
-\vspace{0.15cm}
+\vspace{0.10cm}
 
 \begin{center}
-    \includegraphics[width=0.61\linewidth]{../outputs/eda/figures/fig20_production_disease_rate_by_farm.png}
+    \includegraphics[width=0.62\linewidth]{../outputs/eda/figures/fig11_top_diagnoses.png}
 \end{center}
 
 \end{frame}
 
-%==================== SLIDE 8 ====================
+%==================== SLIDE 9 ====================
 \begin{frame}{Analysis 1.5}
 
 \setbeamercolor{item}{fg=tugreen}
 \begin{itemize}
     \item Breed groups show different health-status distributions
-    \item Breed may influence both disease risk and production-related variables
-    \item This should be retained as a grouping variable in future analysis
+    \item German Holstein is the dominant breed group
+    \item Smaller breed groups have fewer lactation episodes and should be interpreted carefully
+    \item Breed should be retained as a grouping variable in future analysis
 \end{itemize}
 
 \vspace{0.15cm}
@@ -153,14 +176,15 @@ Maria Cherian}
 
 \end{frame}
 
-%==================== SLIDE 9 ====================
+%==================== SLIDE 10 ====================
 \begin{frame}{Analysis 1.6}
 
 \setbeamercolor{item}{fg=tugreen}
 \begin{itemize}
-    \item Missingness is strongly measurement-dependent
-    \item Biomarkers and body-condition variables are much sparser than basic animal/time variables
-    \item Missing biomarker values should not be treated as simple random missingness
+    \item Milk yield is missing in 13.98\% of daily records
+    \item Body condition score is missing in 96.22\% of daily records
+    \item BHB, NEFA and glucose are missing in about 98.53\% of daily records
+    \item Missingness mainly reflects different measurement schedules
 \end{itemize}
 
 \vspace{0.15cm}
@@ -171,32 +195,34 @@ Maria Cherian}
 
 \end{frame}
 
-%==================== SLIDE 10 ====================
+%==================== SLIDE 11 ====================
 \begin{frame}{Analysis 1.7}
 
 \setbeamercolor{item}{fg=tugreen}
 \begin{itemize}
-    \item Disease events are concentrated in a few main categories
-    \item Claw/hoof, reproduction and udder-related disorders dominate the recorded events
-    \item These categories are important for defining future target variables
+    \item Milk yield is available in 423,673 daily records
+    \item Overall median milk yield is 32.45 kg
+    \item Median milk yield differs by health status
+    \item Lowest and highest health-status medians differ by about 2.14 kg
 \end{itemize}
 
-\vspace{0.15cm}
+\vspace{0.10cm}
 
 \begin{center}
-    \includegraphics[width=0.62\linewidth]{../outputs/eda/figures/fig10_disease_category_event_rows.png}
+    \includegraphics[width=0.62\linewidth]{../outputs/eda/figures/fig13_milk_yield_by_health_status.png}
 \end{center}
 
 \end{frame}
 
-%==================== SLIDE 11 ====================
+%==================== SLIDE 12 ====================
 \begin{frame}{Analysis 1.8}
 
 \setbeamercolor{item}{fg=tugreen}
 \begin{itemize}
-    \item Milk yield changes over days in milk and differs by health status
-    \item The time axis is central for interpreting production-related patterns
-    \item Future features should therefore consider lactation-stage windows
+    \item Milk yield changes across days-in-milk bins
+    \item The time trend differs between health-status groups
+    \item Days in milk should be considered in feature engineering
+    \item Raw milk yield should not be interpreted without lactation-stage context
 \end{itemize}
 
 \vspace{0.10cm}
@@ -207,7 +233,33 @@ Maria Cherian}
 
 \end{frame}
 
-%==================== SLIDE 12 ====================
+%==================== SLIDE 13 ====================
+\begin{frame}{Analysis 1.9}
+
+\setbeamercolor{item}{fg=tugreen}
+\begin{itemize}
+    \item BHB above about 1.2 mmol/L is commonly used as a subclinical ketosis warning threshold
+    \item NEFA above about 0.7 mmol/L after calving can indicate excessive fat mobilization
+    \item Both markers are linked to negative energy balance in early lactation
+    \item Interpretation depends strongly on sampling time around calving
+\end{itemize}
+
+\vspace{0.10cm}
+
+\begin{columns}[T,totalwidth=\textwidth]
+\column{0.50\textwidth}
+\begin{center}
+    \includegraphics[width=0.95\linewidth]{../outputs/eda/figures/fig24_bhb_dim_trend_by_health_status.png}
+\end{center}
+
+\column{0.50\textwidth}
+\begin{center}
+    \includegraphics[width=0.95\linewidth]{../outputs/eda/figures/fig25_nefa_dim_trend_by_health_status.png}
+\end{center}
+\end{columns}
+
+\end{frame}
+%==================== SLIDE 14 ====================
 \begin{frame}{Agenda for next week}
 
 \setbeamercolor{item}{fg=tugreen}
@@ -218,8 +270,8 @@ Maria Cherian}
     \end{itemize}
     \item Define the production-disease target clearly
     \item Decide the time window around calving
-    \item Build preprocessing steps for sparse biomarker variables
-    \item Start baseline modelling only after the target and split strategy are fixed
+    \item Build preprocessing steps for sparse variables
+    \item Prepare the first baseline modelling dataset
 \end{itemize}
 
 \end{frame}
