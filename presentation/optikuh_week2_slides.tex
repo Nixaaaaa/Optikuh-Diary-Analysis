@@ -1,0 +1,189 @@
+\documentclass{beamer}
+
+\input{shared_header}
+
+\begin{document}
+
+%==================== SLIDE 1: TITLE ====================
+{
+\setbeamertemplate{footline}{}
+\begin{frame}[noframenumbering]
+
+\vspace{1.9cm}
+
+\begin{center}
+    {\fontsize{25}{29}\selectfont \color{tugreen}
+    Case Study II:\\[0.25cm]
+  Next-Lactation Milk Yield Forecasting}
+\end{center}
+
+\vspace{0.95cm}
+
+\begin{flushleft}
+{\large
+Nixon M Paulson\\
+Rohith B Chowdappa\\
+Maria Cherian}
+\end{flushleft}
+
+\end{frame}
+}
+
+%==================== SLIDE 2: PROBLEM ====================
+\begin{frame}{Problem Statement}
+
+\setbeamercolor{item}{fg=tugreen}
+\begin{itemize}
+    \item Predict \textbf{total milk yield in the next lactation}
+    \item Setup: features from lactation $n$ $\rightarrow$ target $= \texttt{mkg\_sum}(n{+}1)$
+    \item Data: OptiKuh daily dairy records (1,714 cows, $\sim$3,400 lactations)
+    \item Aggregation level: one row per cow (\texttt{lom}) + lactation (\texttt{lnr})
+\end{itemize}
+
+\end{frame}
+
+%==================== SLIDE 3: INITIAL CHALLENGES ====================
+\begin{frame}{Initial Challenges}
+
+\setbeamercolor{item}{fg=tugreen}
+\begin{itemize}
+    \item Daily records must be aggregated without mixing lactations
+    \item Disease fields are categorical text, not numeric flags
+    \item Most cows appear in only one or two lactation episodes
+\end{itemize}
+
+\end{frame}
+
+%==================== SLIDE 4: FEATURE ENGINEERING ====================
+\begin{frame}{Feature Engineering Approach}
+
+\setbeamercolor{item}{fg=tugreen}
+\begin{itemize}
+    \item Sort records by cow, lactation, and observation date
+    \item Aggregate to lactation level with mean / min / max:
+    \begin{itemize}
+        \item Nutrition: \texttt{fts}, \texttt{ftsnel}, \texttt{ftsme}, \texttt{eb\_nel}, \texttt{eb\_me}
+        \item Physiology: \texttt{bcs}, \texttt{gew}, blood markers (\texttt{bhb}, \texttt{nefa}, \texttt{glukose})
+    \end{itemize}
+    \item Milk signals: \texttt{mkg\_sum}, \texttt{mkg\_mean}, \texttt{mkg\_max}
+    \item Target: \texttt{groupby(lom)["mkg\_sum"].shift(-1)}; drop last lactation per cow
+    \item All model inputs forced to numeric (\texttt{float64}) before training
+\end{itemize}
+
+\end{frame}
+
+%==================== SLIDE 5: DISEASE HANDLING ====================
+\begin{frame}{Disease Handling}
+
+\setbeamercolor{item}{fg=tugreen}
+\textbf{Initial approach}
+\begin{itemize}
+    \item One-hot encoding of diagnosis text (26 sparse boolean columns)
+    \item High dimensionality, low signal
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{Improved approach}
+\begin{itemize}
+    \item \texttt{disease\_count}: total disease events per lactation
+    \item \texttt{had\_disease}: binary flag (any event)
+    \item \texttt{disease\_category\_count}: number of disease groups affected
+\end{itemize}
+
+\end{frame}
+
+%==================== SLIDE 6: MODELS ====================
+\begin{frame}{Models Used}
+
+\setbeamercolor{item}{fg=tugreen}
+\begin{itemize}
+    \item \textbf{HistGradientBoostingRegressor}
+    \item Handles missing values natively
+    \item Hyperparameters: \texttt{max\_depth=8}, \texttt{learning\_rate=0.05}, \texttt{max\_iter=500}
+    \item Baseline and improved pipelines use the same model for fair comparison
+\end{itemize}
+
+\end{frame}
+
+%==================== SLIDE 7: KEY ISSUE ====================
+\begin{frame}{Key Issue Discovered}
+
+\setbeamercolor{item}{fg=tugreen}
+\begin{itemize}
+    \item \textbf{Missing temporal structure} was the main failure mode
+    \item 74\% of cows contributed only one supervised row $\rightarrow$ lag features mostly empty
+    \item 37\% of lactations had \texttt{mkg\_sum = 0} (incomplete milk recording window)
+    \item Time-based split left early train folds without usable history
+    \item Baseline excluded current-lactation \texttt{mkg\_sum} from features
+\end{itemize}
+
+\vspace{0.2cm}
+
+\textbf{To note:} next-lactation yield needs cow-level milk history, not only within-lactation averages.
+
+\end{frame}
+
+%==================== SLIDE 8: IMPROVEMENTS ====================
+\begin{frame}{Improvements Added}
+
+\setbeamercolor{item}{fg=tugreen}
+\begin{itemize}
+    \item Lag features per cow (ordered by calving date):
+    \begin{itemize}
+        \item \texttt{prev\_lactation\_milk}, \texttt{prev\_prev\_lactation\_milk}
+        \item \texttt{milk\_trend}, \texttt{cow\_avg\_milk} (prior lactations only)
+    \end{itemize}
+    \item Drop lactations with zero recorded milk (current or next)
+    \item Simplified disease counts instead of one-hot explosion
+    \item Remove all-NaN / constant columns before fitting
+\end{itemize}
+
+\end{frame}
+
+%==================== SLIDE 9: RESULTS ====================
+\begin{frame}{Results}
+
+\small
+\begin{center}
+\begin{tabular}{l r r r}
+\hline
+ & \textbf{RMSE (kg)} & \textbf{MAE (kg)} & \textbf{R\textsuperscript{2}} \\
+\hline
+Baseline (before improvements) & 3,291 & 2,494 & 0.066 \\
+Improved model                 & 2,556 & 1,941 & 0.453 \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.4cm}
+
+\setbeamercolor{item}{fg=tugreen}
+\begin{itemize}
+    \item 44 numeric features in final model
+    \item Largest gain from lag features + data quality, not model complexity
+\end{itemize}
+
+\end{frame}
+
+%==================== SLIDE 10: CONCLUSIONS ====================
+\begin{frame}{Conclusions \& Next Steps}
+
+\setbeamercolor{item}{fg=tugreen}
+\textbf{Conclusions}
+\begin{itemize}
+    \item Correct temporal structure matters more than adding many raw features
+    \item Simple sklearn baseline can reach useful performance with clean aggregation
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{Next steps}
+\begin{itemize}
+    \item Tune features for cows with longer lactation histories
+    \item Use designated time series models for better temporal modeling?
+\end{itemize}
+
+\end{frame}
+
+\end{document}
